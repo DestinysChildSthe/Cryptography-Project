@@ -30,41 +30,56 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.decryptbtn = new System.Windows.Forms.Button();
-            this.choosefcbox = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.Proceedbtn = new System.Windows.Forms.Button();
-            this.Cancelbtn = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Textrbtn = new System.Windows.Forms.RadioButton();
-            this.Photorbtn = new System.Windows.Forms.RadioButton();
-            this.folderrbtn = new System.Windows.Forms.RadioButton();
-            this.Videorbtn = new System.Windows.Forms.RadioButton();
-            this.Rarrbtn = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.selectedflbl = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Rarrbtn = new System.Windows.Forms.RadioButton();
+            this.Videorbtn = new System.Windows.Forms.RadioButton();
+            this.folderrbtn = new System.Windows.Forms.RadioButton();
+            this.Photorbtn = new System.Windows.Forms.RadioButton();
+            this.Textrbtn = new System.Windows.Forms.RadioButton();
+            this.Cancelbtn = new System.Windows.Forms.Button();
+            this.Proceedbtn = new System.Windows.Forms.Button();
+            this.choosefbtn = new System.Windows.Forms.Button();
+            this.choosefcbox = new System.Windows.Forms.ComboBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.deletecbox = new System.Windows.Forms.CheckBox();
-            this.encryptbtn = new System.Windows.Forms.Button();
-            this.keytxtbox = new System.Windows.Forms.TextBox();
+            this.Encryptlbl = new System.Windows.Forms.Label();
             this.repeatktxtbox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.keytxtbox = new System.Windows.Forms.TextBox();
+            this.encryptbtn = new System.Windows.Forms.Button();
+            this.deletecbox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Decryptlbl = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.decryptbtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.donebtn = new System.Windows.Forms.Button();
+            this.cnlbtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.enfileptxtbox = new System.Windows.Forms.TextBox();
+            this.defileptxtbox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,7 +101,7 @@
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.Cancelbtn);
             this.tabPage1.Controls.Add(this.Proceedbtn);
-            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.choosefbtn);
             this.tabPage1.Controls.Add(this.choosefcbox);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
@@ -96,83 +111,33 @@
             this.tabPage1.Text = "Choose file";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // selectedflbl
             // 
-            this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(767, 392);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Encrypt";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.selectedflbl.AutoSize = true;
+            this.selectedflbl.Location = new System.Drawing.Point(271, 278);
+            this.selectedflbl.Name = "selectedflbl";
+            this.selectedflbl.Size = new System.Drawing.Size(122, 20);
+            this.selectedflbl.TabIndex = 7;
+            this.selectedflbl.Text = "No File selected";
+            this.selectedflbl.Click += new System.EventHandler(this.selectedflbl_Click);
             // 
-            // tabPage3
+            // label2
             // 
-            this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(767, 392);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Decrypt";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(118, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Cryptography App";
             // 
-            // groupBox1
+            // label1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(19, 21);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 340);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Decryption";
-            // 
-            // decryptbtn
-            // 
-            this.decryptbtn.Location = new System.Drawing.Point(43, 159);
-            this.decryptbtn.Name = "decryptbtn";
-            this.decryptbtn.Size = new System.Drawing.Size(145, 34);
-            this.decryptbtn.TabIndex = 1;
-            this.decryptbtn.Text = "Decrypt";
-            this.decryptbtn.UseVisualStyleBackColor = true;
-            // 
-            // choosefcbox
-            // 
-            this.choosefcbox.FormattingEnabled = true;
-            this.choosefcbox.Location = new System.Drawing.Point(123, 302);
-            this.choosefcbox.Name = "choosefcbox";
-            this.choosefcbox.Size = new System.Drawing.Size(133, 28);
-            this.choosefcbox.TabIndex = 0;
-            this.choosefcbox.Text = "Choose File";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(123, 272);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // Proceedbtn
-            // 
-            this.Proceedbtn.Location = new System.Drawing.Point(452, 295);
-            this.Proceedbtn.Name = "Proceedbtn";
-            this.Proceedbtn.Size = new System.Drawing.Size(110, 41);
-            this.Proceedbtn.TabIndex = 2;
-            this.Proceedbtn.Text = "Proceed";
-            this.Proceedbtn.UseVisualStyleBackColor = true;
-            // 
-            // Cancelbtn
-            // 
-            this.Cancelbtn.Location = new System.Drawing.Point(592, 295);
-            this.Cancelbtn.Name = "Cancelbtn";
-            this.Cancelbtn.Size = new System.Drawing.Size(109, 41);
-            this.Cancelbtn.TabIndex = 3;
-            this.Cancelbtn.Text = "Cancel";
-            this.Cancelbtn.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(114, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(203, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Select file(s) from computer";
             // 
             // groupBox2
             // 
@@ -189,28 +154,27 @@
             this.groupBox2.Text = "Attachment Type";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // Textrbtn
+            // Rarrbtn
             // 
-            this.Textrbtn.AutoSize = true;
-            this.Textrbtn.Location = new System.Drawing.Point(50, 48);
-            this.Textrbtn.Name = "Textrbtn";
-            this.Textrbtn.Size = new System.Drawing.Size(88, 24);
-            this.Textrbtn.TabIndex = 0;
-            this.Textrbtn.TabStop = true;
-            this.Textrbtn.Text = "Text file";
-            this.Textrbtn.UseVisualStyleBackColor = true;
-            this.Textrbtn.CheckedChanged += new System.EventHandler(this.Textrbtn_CheckedChanged);
+            this.Rarrbtn.AutoSize = true;
+            this.Rarrbtn.Location = new System.Drawing.Point(334, 71);
+            this.Rarrbtn.Name = "Rarrbtn";
+            this.Rarrbtn.Size = new System.Drawing.Size(84, 24);
+            this.Rarrbtn.TabIndex = 4;
+            this.Rarrbtn.TabStop = true;
+            this.Rarrbtn.Text = "Rar file";
+            this.Rarrbtn.UseVisualStyleBackColor = true;
             // 
-            // Photorbtn
+            // Videorbtn
             // 
-            this.Photorbtn.AutoSize = true;
-            this.Photorbtn.Location = new System.Drawing.Point(50, 94);
-            this.Photorbtn.Name = "Photorbtn";
-            this.Photorbtn.Size = new System.Drawing.Size(76, 24);
-            this.Photorbtn.TabIndex = 1;
-            this.Photorbtn.TabStop = true;
-            this.Photorbtn.Text = "Photo";
-            this.Photorbtn.UseVisualStyleBackColor = true;
+            this.Videorbtn.AutoSize = true;
+            this.Videorbtn.Location = new System.Drawing.Point(200, 94);
+            this.Videorbtn.Name = "Videorbtn";
+            this.Videorbtn.Size = new System.Drawing.Size(75, 24);
+            this.Videorbtn.TabIndex = 3;
+            this.Videorbtn.TabStop = true;
+            this.Videorbtn.Text = "Video";
+            this.Videorbtn.UseVisualStyleBackColor = true;
             // 
             // folderrbtn
             // 
@@ -224,157 +188,335 @@
             this.folderrbtn.UseVisualStyleBackColor = true;
             this.folderrbtn.CheckedChanged += new System.EventHandler(this.folderrbtn_CheckedChanged);
             // 
-            // Videorbtn
+            // Photorbtn
             // 
-            this.Videorbtn.AutoSize = true;
-            this.Videorbtn.Location = new System.Drawing.Point(200, 94);
-            this.Videorbtn.Name = "Videorbtn";
-            this.Videorbtn.Size = new System.Drawing.Size(75, 24);
-            this.Videorbtn.TabIndex = 3;
-            this.Videorbtn.TabStop = true;
-            this.Videorbtn.Text = "Video";
-            this.Videorbtn.UseVisualStyleBackColor = true;
+            this.Photorbtn.AutoSize = true;
+            this.Photorbtn.Location = new System.Drawing.Point(50, 94);
+            this.Photorbtn.Name = "Photorbtn";
+            this.Photorbtn.Size = new System.Drawing.Size(76, 24);
+            this.Photorbtn.TabIndex = 1;
+            this.Photorbtn.TabStop = true;
+            this.Photorbtn.Text = "Photo";
+            this.Photorbtn.UseVisualStyleBackColor = true;
             // 
-            // Rarrbtn
+            // Textrbtn
             // 
-            this.Rarrbtn.AutoSize = true;
-            this.Rarrbtn.Location = new System.Drawing.Point(334, 71);
-            this.Rarrbtn.Name = "Rarrbtn";
-            this.Rarrbtn.Size = new System.Drawing.Size(84, 24);
-            this.Rarrbtn.TabIndex = 4;
-            this.Rarrbtn.TabStop = true;
-            this.Rarrbtn.Text = "Rar file";
-            this.Rarrbtn.UseVisualStyleBackColor = true;
+            this.Textrbtn.AutoSize = true;
+            this.Textrbtn.Location = new System.Drawing.Point(50, 48);
+            this.Textrbtn.Name = "Textrbtn";
+            this.Textrbtn.Size = new System.Drawing.Size(88, 24);
+            this.Textrbtn.TabIndex = 0;
+            this.Textrbtn.TabStop = true;
+            this.Textrbtn.Text = "Text file";
+            this.Textrbtn.UseVisualStyleBackColor = true;
+            this.Textrbtn.CheckedChanged += new System.EventHandler(this.Textrbtn_CheckedChanged);
             // 
-            // label1
+            // Cancelbtn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(114, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Select file(s) from computer";
+            this.Cancelbtn.Location = new System.Drawing.Point(594, 316);
+            this.Cancelbtn.Name = "Cancelbtn";
+            this.Cancelbtn.Size = new System.Drawing.Size(109, 41);
+            this.Cancelbtn.TabIndex = 3;
+            this.Cancelbtn.Text = "Cancel";
+            this.Cancelbtn.UseVisualStyleBackColor = true;
+            this.Cancelbtn.Click += new System.EventHandler(this.Cancelbtn_Click);
             // 
-            // label2
+            // Proceedbtn
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Cryptography App";
+            this.Proceedbtn.Location = new System.Drawing.Point(452, 316);
+            this.Proceedbtn.Name = "Proceedbtn";
+            this.Proceedbtn.Size = new System.Drawing.Size(110, 41);
+            this.Proceedbtn.TabIndex = 2;
+            this.Proceedbtn.Text = "Proceed";
+            this.Proceedbtn.UseVisualStyleBackColor = true;
+            this.Proceedbtn.Click += new System.EventHandler(this.Proceedbtn_Click);
             // 
-            // selectedflbl
+            // choosefbtn
             // 
-            this.selectedflbl.AutoSize = true;
-            this.selectedflbl.Location = new System.Drawing.Point(225, 273);
-            this.selectedflbl.Name = "selectedflbl";
-            this.selectedflbl.Size = new System.Drawing.Size(122, 20);
-            this.selectedflbl.TabIndex = 7;
-            this.selectedflbl.Text = "No File selected";
+            this.choosefbtn.Location = new System.Drawing.Point(123, 272);
+            this.choosefbtn.Name = "choosefbtn";
+            this.choosefbtn.Size = new System.Drawing.Size(121, 32);
+            this.choosefbtn.TabIndex = 1;
+            this.choosefbtn.Text = "Choose File";
+            this.choosefbtn.UseVisualStyleBackColor = true;
+            this.choosefbtn.Click += new System.EventHandler(this.choosefbtn_Click);
             // 
-            // groupBox3
+            // choosefcbox
             // 
-            this.groupBox3.Location = new System.Drawing.Point(24, 32);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(330, 336);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Encryption";
+            this.choosefcbox.FormattingEnabled = true;
+            this.choosefcbox.Location = new System.Drawing.Point(122, 341);
+            this.choosefcbox.Name = "choosefcbox";
+            this.choosefcbox.Size = new System.Drawing.Size(133, 28);
+            this.choosefcbox.TabIndex = 0;
+            this.choosefcbox.Text = "Choose File";
+            this.choosefcbox.SelectedIndexChanged += new System.EventHandler(this.choosefcbox_SelectedIndexChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.cnlbtn);
+            this.tabPage2.Controls.Add(this.donebtn);
+            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Controls.Add(this.groupBox3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(767, 392);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Encrypt";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.Encryptlbl);
             this.groupBox4.Controls.Add(this.repeatktxtbox);
             this.groupBox4.Controls.Add(this.keytxtbox);
             this.groupBox4.Controls.Add(this.encryptbtn);
             this.groupBox4.Controls.Add(this.deletecbox);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(400, 32);
+            this.groupBox4.Location = new System.Drawing.Point(400, 21);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(346, 336);
+            this.groupBox4.Size = new System.Drawing.Size(346, 300);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Encryption Key";
             // 
-            // label3
+            // Encryptlbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(38, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Key:";
+            this.Encryptlbl.AutoSize = true;
+            this.Encryptlbl.Location = new System.Drawing.Point(205, 231);
+            this.Encryptlbl.Name = "Encryptlbl";
+            this.Encryptlbl.Size = new System.Drawing.Size(21, 20);
+            this.Encryptlbl.TabIndex = 6;
+            this.Encryptlbl.Text = "...";
+            this.Encryptlbl.Click += new System.EventHandler(this.Encryptlbl_Click);
             // 
-            // label4
+            // repeatktxtbox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(38, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Repeat Key:";
+            this.repeatktxtbox.Location = new System.Drawing.Point(27, 129);
+            this.repeatktxtbox.Name = "repeatktxtbox";
+            this.repeatktxtbox.Size = new System.Drawing.Size(283, 26);
+            this.repeatktxtbox.TabIndex = 5;
+            this.repeatktxtbox.TextChanged += new System.EventHandler(this.repeatktxtbox_TextChanged);
             // 
-            // deletecbox
+            // keytxtbox
             // 
-            this.deletecbox.AutoSize = true;
-            this.deletecbox.Location = new System.Drawing.Point(43, 223);
-            this.deletecbox.Name = "deletecbox";
-            this.deletecbox.Size = new System.Drawing.Size(274, 24);
-            this.deletecbox.TabIndex = 2;
-            this.deletecbox.Text = "Delete original file after encryption";
-            this.deletecbox.UseVisualStyleBackColor = true;
+            this.keytxtbox.Location = new System.Drawing.Point(28, 56);
+            this.keytxtbox.Name = "keytxtbox";
+            this.keytxtbox.Size = new System.Drawing.Size(282, 26);
+            this.keytxtbox.TabIndex = 4;
+            this.keytxtbox.TextChanged += new System.EventHandler(this.keytxtbox_TextChanged);
             // 
             // encryptbtn
             // 
-            this.encryptbtn.Location = new System.Drawing.Point(165, 284);
+            this.encryptbtn.Location = new System.Drawing.Point(28, 226);
             this.encryptbtn.Name = "encryptbtn";
             this.encryptbtn.Size = new System.Drawing.Size(122, 30);
             this.encryptbtn.TabIndex = 3;
             this.encryptbtn.Text = "Encrypt";
             this.encryptbtn.UseVisualStyleBackColor = true;
+            this.encryptbtn.Click += new System.EventHandler(this.encryptbtn_Click);
             // 
-            // keytxtbox
+            // deletecbox
             // 
-            this.keytxtbox.Location = new System.Drawing.Point(43, 82);
-            this.keytxtbox.Name = "keytxtbox";
-            this.keytxtbox.Size = new System.Drawing.Size(282, 26);
-            this.keytxtbox.TabIndex = 4;
+            this.deletecbox.AutoSize = true;
+            this.deletecbox.Location = new System.Drawing.Point(28, 172);
+            this.deletecbox.Name = "deletecbox";
+            this.deletecbox.Size = new System.Drawing.Size(274, 24);
+            this.deletecbox.TabIndex = 2;
+            this.deletecbox.Text = "Delete original file after encryption";
+            this.deletecbox.UseVisualStyleBackColor = true;
+            this.deletecbox.CheckedChanged += new System.EventHandler(this.deletecbox_CheckedChanged);
             // 
-            // repeatktxtbox
+            // label4
             // 
-            this.repeatktxtbox.Location = new System.Drawing.Point(42, 172);
-            this.repeatktxtbox.Name = "repeatktxtbox";
-            this.repeatktxtbox.Size = new System.Drawing.Size(283, 26);
-            this.repeatktxtbox.TabIndex = 5;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(24, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Repeat Key:";
             // 
-            // textBox1
+            // label3
             // 
-            this.textBox1.Location = new System.Drawing.Point(43, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 26);
-            this.textBox1.TabIndex = 0;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(24, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Key:";
             // 
-            // label5
+            // groupBox3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(39, 50);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 20);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Enter key:";
+            this.groupBox3.Controls.Add(this.enfileptxtbox);
+            this.groupBox3.Controls.Add(this.listBox1);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Location = new System.Drawing.Point(28, 21);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(330, 347);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Encryption";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.groupBox5);
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(767, 392);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Decrypt";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.Decryptlbl);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.decryptbtn);
             this.groupBox5.Location = new System.Drawing.Point(426, 34);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(316, 327);
+            this.groupBox5.Size = new System.Drawing.Size(316, 246);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Decryption Key";
+            // 
+            // Decryptlbl
+            // 
+            this.Decryptlbl.AutoSize = true;
+            this.Decryptlbl.Location = new System.Drawing.Point(52, 183);
+            this.Decryptlbl.Name = "Decryptlbl";
+            this.Decryptlbl.Size = new System.Drawing.Size(21, 20);
+            this.Decryptlbl.TabIndex = 2;
+            this.Decryptlbl.Text = "...";
+            this.Decryptlbl.Click += new System.EventHandler(this.Decryptlbl_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(39, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 20);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Enter key:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(43, 62);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(252, 26);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // decryptbtn
+            // 
+            this.decryptbtn.Location = new System.Drawing.Point(43, 116);
+            this.decryptbtn.Name = "decryptbtn";
+            this.decryptbtn.Size = new System.Drawing.Size(145, 34);
+            this.decryptbtn.TabIndex = 1;
+            this.decryptbtn.Text = "Decrypt";
+            this.decryptbtn.UseVisualStyleBackColor = true;
+            this.decryptbtn.Click += new System.EventHandler(this.decryptbtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.defileptxtbox);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Location = new System.Drawing.Point(19, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(349, 340);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Decryption";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 20);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "File:";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // donebtn
+            // 
+            this.donebtn.Location = new System.Drawing.Point(428, 328);
+            this.donebtn.Name = "donebtn";
+            this.donebtn.Size = new System.Drawing.Size(92, 39);
+            this.donebtn.TabIndex = 2;
+            this.donebtn.Text = "Done";
+            this.donebtn.UseVisualStyleBackColor = true;
+            this.donebtn.Click += new System.EventHandler(this.donebtn_Click);
+            // 
+            // cnlbtn
+            // 
+            this.cnlbtn.Location = new System.Drawing.Point(576, 328);
+            this.cnlbtn.Name = "cnlbtn";
+            this.cnlbtn.Size = new System.Drawing.Size(100, 39);
+            this.cnlbtn.TabIndex = 3;
+            this.cnlbtn.Text = "Cancel";
+            this.cnlbtn.UseVisualStyleBackColor = true;
+            this.cnlbtn.Click += new System.EventHandler(this.cnlbtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(454, 317);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 44);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(619, 317);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 44);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "File Path:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(23, 101);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(287, 224);
+            this.listBox1.TabIndex = 1;
+            // 
+            // enfileptxtbox
+            // 
+            this.enfileptxtbox.Location = new System.Drawing.Point(23, 55);
+            this.enfileptxtbox.Name = "enfileptxtbox";
+            this.enfileptxtbox.Size = new System.Drawing.Size(287, 26);
+            this.enfileptxtbox.TabIndex = 2;
+            // 
+            // defileptxtbox
+            // 
+            this.defileptxtbox.Location = new System.Drawing.Point(24, 62);
+            this.defileptxtbox.Name = "defileptxtbox";
+            this.defileptxtbox.Size = new System.Drawing.Size(312, 26);
+            this.defileptxtbox.TabIndex = 1;
             // 
             // Form1
             // 
@@ -387,14 +529,18 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -409,7 +555,7 @@
         private System.Windows.Forms.Button decryptbtn;
         private System.Windows.Forms.Button Cancelbtn;
         private System.Windows.Forms.Button Proceedbtn;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button choosefbtn;
         private System.Windows.Forms.ComboBox choosefcbox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton Rarrbtn;
@@ -431,6 +577,19 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label Encryptlbl;
+        private System.Windows.Forms.Label Decryptlbl;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button cnlbtn;
+        private System.Windows.Forms.Button donebtn;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox enfileptxtbox;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox defileptxtbox;
     }
 }
 
