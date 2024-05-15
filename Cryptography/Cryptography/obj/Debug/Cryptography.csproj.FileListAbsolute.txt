@@ -1,0 +1,5 @@
+C:\Users\princ\Downloads\ITRI615\Cryptography Project\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.AssemblyReference.cache
+C:\Users\princ\Downloads\ITRI615\Cryptography Project\Cryptography\Cryptography\obj\Debug\Cryptography.Form1.resources
+C:\Users\princ\Downloads\ITRI615\Cryptography Project\Cryptography\Cryptography\obj\Debug\Cryptography.Properties.Resources.resources
+C:\Users\princ\Downloads\ITRI615\Cryptography Project\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.GenerateResource.cache
+C:\Users\princ\Downloads\ITRI615\Cryptography Project\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.CoreCompileInputs.cache
