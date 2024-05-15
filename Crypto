@@ -1,0 +1,189 @@
+import secrets
+import string
+from tkinter import *
+from tkinter import filedialog
+
+# Vigenère Cipher
+def vigenere_encrypt(plaintext, key):
+    ciphertext = bytearray()
+    key_as_int = [ord(i) % len(string.printable) for i in key]
+    for i, byte in enumerate(plaintext):
+        shift = key_as_int[i % len(key)]
+        ciphertext.append((byte + shift) % len(string.printable))
+    return bytes(ciphertext)
+
+def vigenere_decrypt(ciphertext, key):
+    plaintext = bytearray()
+    key_as_int = [ord(i) % len(string.printable) for i in key]
+    for i, byte in enumerate(ciphertext):
+        shift = key_as_int[i % len(key)]
+        plaintext.append((byte - shift) % len(string.printable))
+    return bytes(plaintext)
+
+# Vernam Cipher (One-Time Pad)
+def vernam_encrypt(plaintext, key):
+    ciphertext = bytearray()
+    for i, byte in enumerate(plaintext):
+        ciphertext.append(byte ^ key[i % len(key)])
+    return bytes(ciphertext)
+
+def vernam_decrypt(ciphertext, key):
+    plaintext = bytearray()
+    for i, byte in enumerate(ciphertext):
+        plaintext.append(byte ^ key[i % len(key)])
+    return bytes(plaintext)
+
+# Transposition Cipher
+def columnar_encrypt(plaintext, key):
+    ciphertext = bytearray()
+    row_count = len(plaintext) // len(key) + 1
+    matrix = [[] for _ in range(row_count)]
+
+    for i in range(row_count):
+        for j in range(len(key)):
+            matrix[i].append(b'_')
+
+    idx = 0
+    for byte in plaintext:
+        row = idx // len(key)
+        col = idx % len(key)
+        matrix[row][col] = byte
+        idx += 1
+
+    sorted_key = sorted(key)
+    for k in sorted_key:
+        col = key.index(k)
+        for row in matrix:
+            if row[col] != b'_':
+                ciphertext.append(row[col])
+
+    return bytes(ciphertext)
+
+def columnar_decrypt(ciphertext, key):
+    plaintext = bytearray()
+    row_count = len(ciphertext) // len(key) + 1
+    matrix = [[] for _ in range(row_count)]
+
+    sorted_key = sorted(key)
+    idx = 0
+    for k in sorted_key:
+        col = key.index(k)
+        for row in range(row_count):
+            if idx < len(ciphertext):
+                matrix[row].append(ciphertext[idx])
+                idx += 1
+            else:
+                matrix[row].append(b'_')
+
+    for row in matrix:
+        for byte in row:
+            if byte != b'_':
+                plaintext.append(byte)
+
+    return bytes(plaintext)
+
+# Product Cipher
+def product_encrypt(plaintext, key1, key2, cipher1, cipher2):
+    ciphertext = cipher1(plaintext, key1)
+    ciphertext = cipher2(ciphertext, key2)
+    return ciphertext
+
+def product_decrypt(ciphertext, key1, key2, cipher1, cipher2):
+    plaintext = cipher2(ciphertext, key2, decrypt=True)
+    plaintext = cipher1(plaintext, key1, decrypt=True)
+    return plaintext
+
+# Key Generation
+def generate_key(length):
+    key = bytearray()
+    for _ in range(length):
+        key.append(secrets.randbelow(256))
+    return bytes(key)
+
+# GUI
+root = Tk()
+root.title("Encryption/Decryption")
+
+def open_file():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        with open(file_path, 'rb') as file:
+            input_data.set(file.read())
+
+def save_file():
+    file_path = filedialog.asksaveasfilename()
+    if file_path:
+        with open(file_path, 'wb') as file:
+            file.write(output_data.get())
+
+def encrypt():
+    plaintext = input_data.get()
+    cipher = cipher_var.get()
+    key1 = key1_entry.get().encode()
+    key2 = key2_entry.get().encode()
+    if cipher == 'Vigenère':
+        output_data.set(vigenere_encrypt(plaintext, key1))
+    elif cipher == 'Vernam':
+        output_data.set(vernam_encrypt(plaintext, key1))
+    elif cipher == 'Transposition':
+        output_data.set(columnar_encrypt(plaintext, key1))
+    elif cipher == 'Product':
+        cipher1 = cipher1_var.get()
+        cipher2 = cipher2_var.get()
+        if cipher1 == 'Vigenère':
+            cipher1_func = vigenere_encrypt
+        elif cipher1 == 'Vernam':
+            cipher1_func = vernam_encrypt
+        else:
+            cipher1_func = columnar_encrypt
+        if cipher2 == 'Vigenère':
+            cipher2_func = vigenere_encrypt
+        elif cipher2 == 'Vernam':
+            cipher2_func = vernam_encrypt
+        else:
+            cipher2_func = columnar_encrypt
+        output_data.set(product_encrypt(plaintext, key1, key2, cipher1_func, cipher2_func))
+
+def decrypt():
+    ciphertext = input_data.get()
+    cipher = cipher_var.get()
+    key1 = key1_entry.get().encode()
+    key2 = key2_entry.get().encode()
+    if cipher == 'Vigenère':
+        output_data.set(vigenere_decrypt(ciphertext, key1))
+    elif cipher == 'Vernam':
+        output_data.set(vernam_decrypt(ciphertext, key1))
+    elif cipher == 'Transposition':
+        output_data.set(columnar_decrypt(ciphertext, key1))
+    elif cipher == 'Product':
+        cipher1 = cipher1_var.get()
+        cipher2 = cipher2_var.get()
+        if cipher1 == 'Vigenère':
+            cipher1_func = vigenere_decrypt
+        elif cipher1 == 'Vernam':
+            cipher1_func = vernam_decrypt
+        else:
+            cipher1_func = columnar_decrypt
+        if cipher2 == 'Vigenère':
+            cipher2_func = vigenere_decrypt
+        elif cipher2 == 'Vernam':
+            cipher2_func = vernam_decrypt
+        else:
+            cipher2_func = columnar_decrypt
+        output_data.set(product_decrypt(ciphertext, key1, key2, cipher1_func, cipher2_func))
+
+# Input/Output Data
+input_data = StringVar()
+output_data = StringVar()
+input_frame = Frame(root)
+input_frame.pack(padx=10, pady=5)
+input_label = Label(input_frame, text="Input Data:")
+input_label.pack(side=LEFT)
+input_entry = Entry(input_frame, textvariable=input_data)
+input_entry.pack(side=LEFT, fill=X, expand=True)
+open_button = Button(input_frame, text="Open File", command=open_file)
+open_button.pack(side=RIGHT)
+
+output_frame = Frame(root)
+output_frame.pack(padx=10, pady=5)
+output_label = Label(output_frame)
