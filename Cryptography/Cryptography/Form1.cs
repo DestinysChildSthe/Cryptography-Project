@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.WebRequestMethods;
 
+
 namespace Cryptography
 {
     public partial class Form1 : Form
@@ -21,10 +22,7 @@ namespace Cryptography
         SaveFileDialog saveF;
         StreamWriter swrite;
         Stream s;
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataAdapter adapt;
-        DataSet ds;
+        
 
         public Form1()
         {
@@ -103,29 +101,6 @@ namespace Cryptography
         
         }
 
-        public void deleteAfter(string fileToDelete)
-        {
-            try
-            {
-                // Check if file exists with its full path    
-                if (File.Exists(fileToDelete))
-                {
-                    // If file found, delete it    
-                    File.Delete(fileToDelete);
-                    MessageBox.Show("Original file deleted ", "File deleted", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("File not found", "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (IOException ioExp)
-            {
-                Console.WriteLine(ioExp.Message);
-            }
-        }
-
         private void choosefbtn_Click(object sender, EventArgs e)
         {
             try
@@ -172,11 +147,10 @@ namespace Cryptography
                 MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }*/
 
-            Register validateKey = new Register();
-            bool isKeySame = Register.validatePassword(keytxtbox.Text, repeatktxtbox.Text);
+          
             try
             {
-                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" && isKeySame)
+                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" )
                 {
                     string encryptedText = "";
                     List<string> algorithms = new List<string>();
@@ -206,12 +180,19 @@ namespace Cryptography
                     if (algorithms.Count > 0)
                     {
                         encryptedText = EncryptWithMultipleAlgorithms(enfileptxtbox.Text, algorithms, keys);
-                        saveFile(encryptedText);
-                        deletecbox.Enabled =
+                        saveFile();
+                        deletecbox.Enabled = true;
                     }
                 }
             }
+            catch (IOException ioEx)
+            {
+
+                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        
         private void deletecbox_CheckedChanged(object sender, EventArgs e)
         {
           
@@ -251,7 +232,7 @@ namespace Cryptography
 
         private void enableProceed()
         {
-            if (choosefbtn.SelectedIndex == 0 || choosefbtn.SelectedIndex == 1)
+            if (choosefcbox.SelectedIndex == 0 || choosefcbox.SelectedIndex == 1)
             {
                 Proceedbtn.Enabled = true;
             }
@@ -262,10 +243,10 @@ namespace Cryptography
             try
             {
                 // Check if file exists with its full path    
-                if (File.Exists(fileToDelete))
+                if (System.IO.File.Exists(fileToDelete))
                 {
                     // If file found, delete it    
-                    File.Delete(fileToDelete);
+                    System.IO.File.Delete(fileToDelete);
                     MessageBox.Show("Original file deleted ", "File deleted", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 }
@@ -283,36 +264,56 @@ namespace Cryptography
 
         public void saveFile()
         {
+             saveF = new SaveFileDialog();
+             saveF.Title = "Save File";
+             saveF.InitialDirectory = @"C:\";//--"C:\\";
+             saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
+
+             if (saveF.ShowDialog() == DialogResult.OK)
+             {
+                 string encText = keytxtbox.Text;
+                 string decText = textBox1.Text;
+                 s = System.IO.File.Open(saveF.FileName, FileMode.CreateNew);
+                 using (swrite = new StreamWriter(s))
+                 {
+                     if (tabControl1.SelectedIndex == 1) //encrypt
+                     {
+                         swrite.Write(encText); // updated text encryption
+                         //encryptFile(encText);
+                         Encryptlbl.Text = saveF.FileName; // filePath
+                     }
+                     else if (tabControl1.SelectedIndex == 2) // decrypt
+                     {
+                         swrite.Write(decText); // updated text decryption
+                         //decyptFile(decText);
+                         Decryptlbl.Text = saveF.FileName; // filepath
+                     }
+                     MessageBox.Show("New File saved at " + saveF.FileName, "Saved File", MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+
+                 }
+
+             }
+
+        }
+
+        /*public void saveFile(string text)
+        {
             saveF = new SaveFileDialog();
             saveF.Title = "Save File";
-            saveF.InitialDirectory = @"C:\";//--"C:\\";
+            saveF.InitialDirectory = @"C:\";
             saveF.Filter = "All files (*.*)|*.*|Text File (*.txt)|*.txt";
 
             if (saveF.ShowDialog() == DialogResult.OK)
             {
-                string encText = keytxtbox.Text;
-                string decText = textBox1.Text;
                 s = File.Open(saveF.FileName, FileMode.CreateNew);
                 using (swrite = new StreamWriter(s))
                 {
-                    if (tabControl1.SelectedIndex == 1) //encrypt
-                    {
-                        swrite.Write(encText); // updated text encryption
-                        //encryptFile(encText);
-                        Encryptlbl.Text = saveF.FileName; // filePath
-                    }
-                    else if (tabControl1.SelectedIndex == 2) // decrypt
-                    {
-                        swrite.Write(decText); // updated text decryption
-                        //decyptFile(decText);
-                        Decryptlbl.Text = saveF.FileName; // filepath
-                    }
-                    MessageBox.Show("New File saved at " + saveF.FileName, "Saved File", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    swrite.Write(text);
+                    MessageBox.Show("New File saved at " + saveF.FileName, "Saved File", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-        }
+        }*/
 
         private void Encryptlbl_Click(object sender, EventArgs e)
         {
@@ -333,7 +334,7 @@ namespace Cryptography
                     enfileptxtbox.Text = selectedflbl.Text;
                     if (Textrbtn.Checked == true)
                     {
-                        keytxtbox.Text = File.ReadAllText(fileToOpen.FileName);
+                        keytxtbox.Text = System.IO.File.ReadAllText(fileToOpen.FileName);
                     }
                     else if (Photorbtn.Checked == true)
                     {
@@ -349,16 +350,25 @@ namespace Cryptography
                         // txtfileEn.text == "Rar file";
                     }
 
-                    tabControl1.SelectedTab = Encrypt;
-                    Encrypt.Show();
+                    /*tabControl1.SelectedTab = Encrypt;
+                    Encrypt.Show();*/
+
+                    tabControl1.SelectedTab = tabControl1.TabPages["Encrypt"];
 
                 }
-                else if (choosefbtn.SelectedIndex == 1)
+                else if (choosefcbox.SelectedIndex == 1)
                 {
                     defileptxtbox.Text = selectedflbl.Text;
-                    textBox1.Text = File.ReadAllText(fileToOpen.FileName);
+                    /*textBox1.Text = File.ReadAllText(fileToOpen.FileName);
                     tabControl1.SelectedTab = Decrypt;
-                    Decrypt.Show();
+                    Decrypt.Show();*/
+
+                    if (!string.IsNullOrEmpty(fileToOpen.FileName))
+                    {
+                        textBox1.Text = System.IO.File.ReadAllText(fileToOpen.FileName);
+                    }
+
+                    tabControl1.SelectedTab = tabControl1.TabPages["Decrypt"];
                 }
             }
         }
