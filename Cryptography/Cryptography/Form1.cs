@@ -157,7 +157,7 @@ namespace Cryptography
         private void encryptbtn_Click(object sender, EventArgs e)
         {
             //call the Encryption method/function
-            Register validateKey = new Register();
+            /*Register validateKey = new Register();
             bool isKeySame = Register.validatePassword(keytxtbox.Text, repeatktxtbox.Text);
             try
             {
@@ -170,9 +170,48 @@ namespace Cryptography
             catch (IOException ioEx)
             {
                 MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+
+            Register validateKey = new Register();
+            bool isKeySame = Register.validatePassword(keytxtbox.Text, repeatktxtbox.Text);
+            try
+            {
+                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" && isKeySame)
+                {
+                    string encryptedText = "";
+                    List<string> algorithms = new List<string>();
+                    List<object> keys = new List<object>();
+
+                    if (vignererbtn.Checked)
+                    {
+                        algorithms.Add("Vigenère Cipher");
+                        keys.Add(keytxtbox.Text);
+                    }
+                    if (vernamrbtn.Checked)
+                    {
+                        algorithms.Add("Vernam Cipher");
+                        keys.Add(keytxtbox.Text);
+                    }
+                    if (transrbtn.Checked)
+                    {
+                        algorithms.Add("Transposition Cipher");
+                        keys.Add(Convert.ToInt32(keytxtbox.Text));
+                    }
+                    /* if (ownrbtn.Checked)
+                     {
+                         algorithms.Add("Own Algorithm");
+                         keys.Add(Convert.ToInt32(keytxtbox.Text));
+                     }*/
+
+                    if (algorithms.Count > 0)
+                    {
+                        encryptedText = EncryptWithMultipleAlgorithms(enfileptxtbox.Text, algorithms, keys);
+                        saveFile(encryptedText);
+                        deletecbox.Enabled =
+                    }
+                }
             }
         }
-
         private void deletecbox_CheckedChanged(object sender, EventArgs e)
         {
           
@@ -353,6 +392,220 @@ namespace Cryptography
         private void Cancelbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //----------------------Cryptography algorithm--------------
+
+
+        //----------------------Vignere---------------------------
+
+        private string VigenereEncrypt(string plainText, string key)
+        {
+            string cipherText = "";
+            int j = 0;
+
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                if (Char.IsLetter(plainText[i]))
+                {
+                    cipherText += (char)(((plainText[i] + key[j]) % 26) + 'A');
+                    j = ++j % key.Length;
+                }
+                else
+                {
+                    cipherText += plainText[i];
+                }
+            }
+
+            return cipherText;
+        }
+
+        private string VigenereDecrypt(string cipherText, string key)
+        {
+            string plainText = "";
+            int j = 0;
+
+            for (int i = 0; i < cipherText.Length; i++)
+            {
+                if (Char.IsLetter(cipherText[i]))
+                {
+                    plainText += (char)(((cipherText[i] - key[j] + 26) % 26) + 'A');
+                    j = ++j % key.Length;
+                }
+                else
+                {
+                    plainText += cipherText[i];
+                }
+            }
+
+            return plainText;
+        }
+
+
+        //----------------------Vernam-----------------------------
+
+        private string VernamEncrypt(string plainText, string key)
+        {
+            string cipherText = "";
+            int j = 0;
+
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                cipherText += (char)(plainText[i] ^ key[j]);
+                j = ++j % key.Length;
+            }
+
+            return cipherText;
+        }
+
+        private string VernamDecrypt(string cipherText, string key)
+        {
+            string plainText = "";
+            int j = 0;
+
+            for (int i = 0; i < cipherText.Length; i++)
+            {
+                plainText += (char)(cipherText[i] ^ key[j]);
+                j = ++j % key.Length;
+            }
+
+            return plainText;
+        }
+
+        //----------------------Transposition-----------------------------
+
+        private string TranspositionEncrypt(string plainText, int keyLength)
+        {
+            string cipherText = "";
+            int rows = plainText.Length / keyLength;
+            if (plainText.Length % keyLength != 0)
+                rows++;
+
+            char[,] rail = new char[rows, keyLength];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < keyLength; j++)
+                {
+                    if (plainText.Length == (i * keyLength) + j)
+                        break;
+                    rail[i, j] = plainText[(i * keyLength) + j];
+                }
+            }
+
+            for (int j = 0; j < keyLength; j++)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    if (rail[i, j] != '\0')
+                        cipherText += rail[i, j];
+                }
+            }
+
+            return cipherText;
+        }
+
+        private string TranspositionDecrypt(string cipherText, int keyLength)
+        {
+            string plainText = "";
+            int rows = cipherText.Length / keyLength;
+            if (cipherText.Length % keyLength != 0)
+                rows++;
+
+            char[,] rail = new char[rows, keyLength];
+
+            for (int j = 0; j < keyLength; j++)
+            {
+                int k = 0;
+                for (int i = 0; i < rows; i++)
+                {
+                    if (cipherText.Length == (i * keyLength) + j)
+                        break;
+                    rail[i, j] = cipherText[(i * keyLength) + j];
+                    k++;
+                }
+            }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < keyLength; j++)
+                {
+                    if (rail[i, j] != '\0')
+                        plainText += rail[i, j];
+                }
+            }
+
+            return plainText;
+        }
+
+        private string EncryptWithMultipleAlgorithms(string plainText, List<string> algorithms, List<object> keys)
+        {
+            string cipherText = plainText;
+            for (int i = 0; i < algorithms.Count; i++)
+            {
+                switch (algorithms[i])
+                {
+                    case "Vigenère Cipher":
+                        cipherText = VigenereEncrypt(cipherText, keys[i].ToString());
+                        break;
+                    case "Vernam Cipher":
+                        cipherText = VernamEncrypt(cipherText, keys[i].ToString());
+                        break;
+                    case "Transposition Cipher":
+                        cipherText = TranspositionEncrypt(cipherText, (int)keys[i]);
+                        break;
+                   /* case "Own Algorithm":
+                        cipherText = OwnEncrypt(cipherText, (int)keys[i]);
+                        break;*/
+                        // Add more cases for other ciphers if needed
+                }
+            }
+            return cipherText;
+        }
+
+        private string DecryptWithMultipleAlgorithms(string cipherText, List<string> algorithms, List<object> keys)
+        {
+            string plainText = cipherText;
+            for (int i = algorithms.Count - 1; i >= 0; i--)
+            {
+                switch (algorithms[i])
+                {
+                    case "Vigenère Cipher":
+                        plainText = VigenereDecrypt(plainText, keys[i].ToString());
+                        break;
+                    case "Vernam Cipher":
+                        plainText = VernamDecrypt(plainText, keys[i].ToString());
+                        break;
+                    case "Transposition Cipher":
+                        plainText = TranspositionDecrypt(plainText, (int)keys[i]);
+                        break;
+                    /*case "Own Algorithm":
+                        plainText = OwnDecrypt(plainText, (int)keys[i]);
+                        break;*/
+                        // Add more cases for other ciphers if needed
+                }
+            }
+            return plainText;
+        }
+
+        private void vignererbtn_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void transrbtn_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void vernamrbtn_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

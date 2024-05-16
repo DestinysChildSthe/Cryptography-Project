@@ -44,6 +44,8 @@
             this.choosefbtn = new System.Windows.Forms.Button();
             this.choosefcbox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cnlbtn = new System.Windows.Forms.Button();
+            this.donebtn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.Encryptlbl = new System.Windows.Forms.Label();
             this.repeatktxtbox = new System.Windows.Forms.TextBox();
@@ -53,24 +55,25 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.enfileptxtbox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Decryptlbl = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.decryptbtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.defileptxtbox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.donebtn = new System.Windows.Forms.Button();
-            this.cnlbtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.enfileptxtbox = new System.Windows.Forms.TextBox();
-            this.defileptxtbox = new System.Windows.Forms.TextBox();
+            this.vignererbtn = new System.Windows.Forms.RadioButton();
+            this.transrbtn = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.vernamrbtn = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -265,6 +268,26 @@
             this.tabPage2.Text = "Encrypt";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // cnlbtn
+            // 
+            this.cnlbtn.Location = new System.Drawing.Point(576, 328);
+            this.cnlbtn.Name = "cnlbtn";
+            this.cnlbtn.Size = new System.Drawing.Size(100, 39);
+            this.cnlbtn.TabIndex = 3;
+            this.cnlbtn.Text = "Cancel";
+            this.cnlbtn.UseVisualStyleBackColor = true;
+            this.cnlbtn.Click += new System.EventHandler(this.cnlbtn_Click);
+            // 
+            // donebtn
+            // 
+            this.donebtn.Location = new System.Drawing.Point(428, 328);
+            this.donebtn.Name = "donebtn";
+            this.donebtn.Size = new System.Drawing.Size(92, 39);
+            this.donebtn.TabIndex = 2;
+            this.donebtn.Text = "Done";
+            this.donebtn.UseVisualStyleBackColor = true;
+            this.donebtn.Click += new System.EventHandler(this.donebtn_Click);
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.Encryptlbl);
@@ -348,15 +371,33 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.vernamrbtn);
+            this.groupBox3.Controls.Add(this.radioButton3);
+            this.groupBox3.Controls.Add(this.transrbtn);
+            this.groupBox3.Controls.Add(this.vignererbtn);
             this.groupBox3.Controls.Add(this.enfileptxtbox);
-            this.groupBox3.Controls.Add(this.listBox1);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Location = new System.Drawing.Point(28, 21);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(330, 347);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Encryption";
+            // 
+            // enfileptxtbox
+            // 
+            this.enfileptxtbox.Location = new System.Drawing.Point(23, 55);
+            this.enfileptxtbox.Name = "enfileptxtbox";
+            this.enfileptxtbox.Size = new System.Drawing.Size(287, 26);
+            this.enfileptxtbox.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(19, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "File Path:";
             // 
             // tabPage3
             // 
@@ -371,6 +412,26 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Decrypt";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(619, 317);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 44);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(454, 317);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 44);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Done";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox5
             // 
@@ -433,6 +494,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Decryption";
             // 
+            // defileptxtbox
+            // 
+            this.defileptxtbox.Location = new System.Drawing.Point(24, 62);
+            this.defileptxtbox.Name = "defileptxtbox";
+            this.defileptxtbox.Size = new System.Drawing.Size(312, 26);
+            this.defileptxtbox.TabIndex = 1;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -446,77 +514,52 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // donebtn
+            // vignererbtn
             // 
-            this.donebtn.Location = new System.Drawing.Point(428, 328);
-            this.donebtn.Name = "donebtn";
-            this.donebtn.Size = new System.Drawing.Size(92, 39);
-            this.donebtn.TabIndex = 2;
-            this.donebtn.Text = "Done";
-            this.donebtn.UseVisualStyleBackColor = true;
-            this.donebtn.Click += new System.EventHandler(this.donebtn_Click);
+            this.vignererbtn.AutoSize = true;
+            this.vignererbtn.Location = new System.Drawing.Point(23, 190);
+            this.vignererbtn.Name = "vignererbtn";
+            this.vignererbtn.Size = new System.Drawing.Size(89, 24);
+            this.vignererbtn.TabIndex = 3;
+            this.vignererbtn.TabStop = true;
+            this.vignererbtn.Text = "Vignere";
+            this.vignererbtn.UseVisualStyleBackColor = true;
+            this.vignererbtn.CheckedChanged += new System.EventHandler(this.vignererbtn_CheckedChanged);
             // 
-            // cnlbtn
+            // transrbtn
             // 
-            this.cnlbtn.Location = new System.Drawing.Point(576, 328);
-            this.cnlbtn.Name = "cnlbtn";
-            this.cnlbtn.Size = new System.Drawing.Size(100, 39);
-            this.cnlbtn.TabIndex = 3;
-            this.cnlbtn.Text = "Cancel";
-            this.cnlbtn.UseVisualStyleBackColor = true;
-            this.cnlbtn.Click += new System.EventHandler(this.cnlbtn_Click);
+            this.transrbtn.AutoSize = true;
+            this.transrbtn.Location = new System.Drawing.Point(23, 246);
+            this.transrbtn.Name = "transrbtn";
+            this.transrbtn.Size = new System.Drawing.Size(129, 24);
+            this.transrbtn.TabIndex = 4;
+            this.transrbtn.TabStop = true;
+            this.transrbtn.Text = "Transposition";
+            this.transrbtn.UseVisualStyleBackColor = true;
+            this.transrbtn.CheckedChanged += new System.EventHandler(this.transrbtn_CheckedChanged);
             // 
-            // button1
+            // radioButton3
             // 
-            this.button1.Location = new System.Drawing.Point(454, 317);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 44);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Done";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(175, 246);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(126, 24);
+            this.radioButton3.TabIndex = 5;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // vernamrbtn
             // 
-            this.button2.Location = new System.Drawing.Point(619, 317);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 44);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 20);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "File Path:";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(23, 101);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(287, 224);
-            this.listBox1.TabIndex = 1;
-            // 
-            // enfileptxtbox
-            // 
-            this.enfileptxtbox.Location = new System.Drawing.Point(23, 55);
-            this.enfileptxtbox.Name = "enfileptxtbox";
-            this.enfileptxtbox.Size = new System.Drawing.Size(287, 26);
-            this.enfileptxtbox.TabIndex = 2;
-            // 
-            // defileptxtbox
-            // 
-            this.defileptxtbox.Location = new System.Drawing.Point(24, 62);
-            this.defileptxtbox.Name = "defileptxtbox";
-            this.defileptxtbox.Size = new System.Drawing.Size(312, 26);
-            this.defileptxtbox.TabIndex = 1;
+            this.vernamrbtn.AutoSize = true;
+            this.vernamrbtn.Location = new System.Drawing.Point(175, 190);
+            this.vernamrbtn.Name = "vernamrbtn";
+            this.vernamrbtn.Size = new System.Drawing.Size(90, 24);
+            this.vernamrbtn.TabIndex = 6;
+            this.vernamrbtn.TabStop = true;
+            this.vernamrbtn.Text = "Vernam";
+            this.vernamrbtn.UseVisualStyleBackColor = true;
+            this.vernamrbtn.CheckedChanged += new System.EventHandler(this.vernamrbtn_CheckedChanged);
             // 
             // Form1
             // 
@@ -587,9 +630,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox enfileptxtbox;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox defileptxtbox;
+        private System.Windows.Forms.RadioButton vernamrbtn;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton transrbtn;
+        private System.Windows.Forms.RadioButton vignererbtn;
     }
 }
 
