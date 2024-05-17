@@ -55,6 +55,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.vernamrbtn = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.transrbtn = new System.Windows.Forms.RadioButton();
+            this.vignererbtn = new System.Windows.Forms.RadioButton();
             this.enfileptxtbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -70,10 +74,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.vignererbtn = new System.Windows.Forms.RadioButton();
-            this.transrbtn = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.vernamrbtn = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,7 +93,7 @@
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(775, 425);
+            this.tabControl1.Size = new System.Drawing.Size(1077, 498);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -109,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(767, 392);
+            this.tabPage1.Size = new System.Drawing.Size(1069, 465);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Choose file";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -249,9 +249,9 @@
             this.choosefcbox.FormattingEnabled = true;
             this.choosefcbox.Location = new System.Drawing.Point(122, 341);
             this.choosefcbox.Name = "choosefcbox";
-            this.choosefcbox.Size = new System.Drawing.Size(133, 28);
+            this.choosefcbox.Size = new System.Drawing.Size(148, 28);
             this.choosefcbox.TabIndex = 0;
-            this.choosefcbox.Text = "Choose File";
+            this.choosefcbox.Text = "Choose Cipher";
             this.choosefcbox.SelectedIndexChanged += new System.EventHandler(this.choosefcbox_SelectedIndexChanged);
             // 
             // tabPage2
@@ -382,6 +382,53 @@
             this.groupBox3.Size = new System.Drawing.Size(330, 347);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
+            // 
+            // vernamrbtn
+            // 
+            this.vernamrbtn.AutoSize = true;
+            this.vernamrbtn.Location = new System.Drawing.Point(175, 190);
+            this.vernamrbtn.Name = "vernamrbtn";
+            this.vernamrbtn.Size = new System.Drawing.Size(90, 24);
+            this.vernamrbtn.TabIndex = 6;
+            this.vernamrbtn.TabStop = true;
+            this.vernamrbtn.Text = "Vernam";
+            this.vernamrbtn.UseVisualStyleBackColor = true;
+            this.vernamrbtn.CheckedChanged += new System.EventHandler(this.vernamrbtn_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(175, 246);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(126, 24);
+            this.radioButton3.TabIndex = 5;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // transrbtn
+            // 
+            this.transrbtn.AutoSize = true;
+            this.transrbtn.Location = new System.Drawing.Point(23, 246);
+            this.transrbtn.Name = "transrbtn";
+            this.transrbtn.Size = new System.Drawing.Size(129, 24);
+            this.transrbtn.TabIndex = 4;
+            this.transrbtn.TabStop = true;
+            this.transrbtn.Text = "Transposition";
+            this.transrbtn.UseVisualStyleBackColor = true;
+            this.transrbtn.CheckedChanged += new System.EventHandler(this.transrbtn_CheckedChanged);
+            // 
+            // vignererbtn
+            // 
+            this.vignererbtn.AutoSize = true;
+            this.vignererbtn.Location = new System.Drawing.Point(23, 190);
+            this.vignererbtn.Name = "vignererbtn";
+            this.vignererbtn.Size = new System.Drawing.Size(89, 24);
+            this.vignererbtn.TabIndex = 3;
+            this.vignererbtn.TabStop = true;
+            this.vignererbtn.Text = "Vignere";
+            this.vignererbtn.UseVisualStyleBackColor = true;
+            this.vignererbtn.CheckedChanged += new System.EventHandler(this.vignererbtn_CheckedChanged);
             // 
             // enfileptxtbox
             // 
@@ -514,58 +561,11 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // vignererbtn
-            // 
-            this.vignererbtn.AutoSize = true;
-            this.vignererbtn.Location = new System.Drawing.Point(23, 190);
-            this.vignererbtn.Name = "vignererbtn";
-            this.vignererbtn.Size = new System.Drawing.Size(89, 24);
-            this.vignererbtn.TabIndex = 3;
-            this.vignererbtn.TabStop = true;
-            this.vignererbtn.Text = "Vignere";
-            this.vignererbtn.UseVisualStyleBackColor = true;
-            this.vignererbtn.CheckedChanged += new System.EventHandler(this.vignererbtn_CheckedChanged);
-            // 
-            // transrbtn
-            // 
-            this.transrbtn.AutoSize = true;
-            this.transrbtn.Location = new System.Drawing.Point(23, 246);
-            this.transrbtn.Name = "transrbtn";
-            this.transrbtn.Size = new System.Drawing.Size(129, 24);
-            this.transrbtn.TabIndex = 4;
-            this.transrbtn.TabStop = true;
-            this.transrbtn.Text = "Transposition";
-            this.transrbtn.UseVisualStyleBackColor = true;
-            this.transrbtn.CheckedChanged += new System.EventHandler(this.transrbtn_CheckedChanged);
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(175, 246);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(126, 24);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // vernamrbtn
-            // 
-            this.vernamrbtn.AutoSize = true;
-            this.vernamrbtn.Location = new System.Drawing.Point(175, 190);
-            this.vernamrbtn.Name = "vernamrbtn";
-            this.vernamrbtn.Size = new System.Drawing.Size(90, 24);
-            this.vernamrbtn.TabIndex = 6;
-            this.vernamrbtn.TabStop = true;
-            this.vernamrbtn.Text = "Vernam";
-            this.vernamrbtn.UseVisualStyleBackColor = true;
-            this.vernamrbtn.CheckedChanged += new System.EventHandler(this.vernamrbtn_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1102, 523);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";

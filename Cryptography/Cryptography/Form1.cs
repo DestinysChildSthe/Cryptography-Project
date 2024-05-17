@@ -121,7 +121,25 @@ namespace Cryptography
 
         private void choosefcbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            enableProceed();
+            choosefcbox.Items.Add("Vigenère Cipher");
+            choosefcbox.Items.Add("Vernam Cipher");
+            choosefcbox.Items.Add("Transposition Cipher");
+
+            // Add other algorithms as needed
+           /* if (choosefcbox.SelectedIndex == 0 && choosefcbox.Enabled)
+            {
+                // Enable or disable the key text box based on the selected algorithm
+                if (choosefcbox.SelectedIndex >= 0)
+                {
+                    keytxtbox.Enabled = true; // Enable the key text box
+                    enableProceed();
+                }
+                else
+                {
+                    keytxtbox.Enabled = false; // Disable the key text box
+                }
+            }*/
+            
         }
 
         private void selectedflbl_Click(object sender, EventArgs e)
@@ -131,28 +149,11 @@ namespace Cryptography
 
         private void encryptbtn_Click(object sender, EventArgs e)
         {
-            //call the Encryption method/function
-            /*Register validateKey = new Register();
-            bool isKeySame = Register.validatePassword(keytxtbox.Text, repeatktxtbox.Text);
             try
             {
-                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" && (isKeySame == true))
+                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" && keytxtbox.Text == repeatktxtbox.Text)
                 {
-                    saveFile();
-                    deletecbox.Enabled = true;
-                }
-            }
-            catch (IOException ioEx)
-            {
-                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-
-          
-            try
-            {
-                if (keytxtbox.Text != "" && repeatktxtbox.Text != "" )
-                {
-                    string encryptedText = "";
+                    byte[] encryptedBytes = null;
                     List<string> algorithms = new List<string>();
                     List<object> keys = new List<object>();
 
@@ -164,48 +165,111 @@ namespace Cryptography
                     if (vernamrbtn.Checked)
                     {
                         algorithms.Add("Vernam Cipher");
-                        keys.Add(keytxtbox.Text);
+                        keys.Add(Encoding.ASCII.GetBytes(keytxtbox.Text));
                     }
-                    if (transrbtn.Checked)
-                    {
-                        algorithms.Add("Transposition Cipher");
-                        keys.Add(Convert.ToInt32(keytxtbox.Text));
-                    }
-                    /* if (ownrbtn.Checked)
-                     {
-                         algorithms.Add("Own Algorithm");
-                         keys.Add(Convert.ToInt32(keytxtbox.Text));
-                     }*/
+                    // Add other algorithms here
 
                     if (algorithms.Count > 0)
                     {
-                        encryptedText = EncryptWithMultipleAlgorithms(enfileptxtbox.Text, algorithms, keys);
-                        saveFile();
+                        byte[] plainBytes = System.IO.File.ReadAllBytes(enfileptxtbox.Text);
+
+                        for (int i = 0; i < algorithms.Count; i++)
+                        {
+                            switch (algorithms[i])
+                            {
+                                case "Vigenère Cipher":
+                                    plainBytes = VigenereEncrypt(plainBytes, keys[i].ToString());
+                                    break;
+                                case "Vernam Cipher":
+                                    plainBytes = VernamEncrypt(plainBytes, (byte[])keys[i]);
+                                    break;
+                                    // Add other algorithms here
+                            }
+                        }
+
+                        encryptedBytes = plainBytes;
+                        saveFileBytes(encryptedBytes);
                         deletecbox.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select at least one algorithm.", "No Algorithm Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
             catch (IOException ioEx)
             {
-
-                MessageBox.Show("Enter encryption key", "Enter key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ioEx.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException formatEx)
+            {
+                MessageBox.Show("Invalid key format. Please enter a valid key.", "Invalid Key", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        
+        private void decryptbtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                byte[] decryptedBytes = null;
+                List<string> algorithms = new List<string>();
+                List<object> keys = new List<object>();
+
+                if (vignererbtn.Checked)
+                {
+                    algorithms.Add("Vigenère Cipher");
+                    keys.Add(keytxtbox.Text);
+                }
+                if (vernamrbtn.Checked)
+                {
+                    algorithms.Add("Vernam Cipher");
+                    keys.Add(Encoding.ASCII.GetBytes(keytxtbox.Text));
+                }
+                // Add other algorithms here
+
+                if (algorithms.Count > 0)
+                {
+                    byte[] cipherBytes = System.IO.File.ReadAllBytes(defileptxtbox.Text);
+
+                    for (int i = algorithms.Count - 1; i >= 0; i--)
+                    {
+                        switch (algorithms[i])
+                        {
+                            case "Vigenère Cipher":
+                                cipherBytes = VigenereDecrypt(cipherBytes, keys[i].ToString());
+                                break;
+                            case "Vernam Cipher":
+                                cipherBytes = VernamDecrypt(cipherBytes, (byte[])keys[i]);
+                                break;
+                                // Add other algorithms here
+                        }
+                    }
+
+                    decryptedBytes = cipherBytes;
+                    saveFileBytes(decryptedBytes);
+                }
+                else
+                {
+                    MessageBox.Show("Please select at least one algorithm.", "No Algorithm Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (IOException ioEx)
+            {
+                MessageBox.Show("Error: " + ioEx.Message, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException formatEx)
+            {
+                MessageBox.Show("Invalid key format. Please enter a valid key.", "Invalid Key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void deletecbox_CheckedChanged(object sender, EventArgs e)
         {
           
 
         }
 
-        private void decryptbtn_Click(object sender, EventArgs e)
-        {
-            //call the decryption method/function
-            saveFile();
-            
-
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -261,9 +325,14 @@ namespace Cryptography
             }
         }
 
-
-        public void saveFile()
+        private void saveFileBytes(byte[] bytes)
         {
+            /*SaveFileDialog saveF = new SaveFileDialog();
+            saveF.Title = "Save File";
+            saveF.InitialDirectory = @"C:\";
+            saveF.Filter = "All";
+            */
+  
              saveF = new SaveFileDialog();
              saveF.Title = "Save File";
              saveF.InitialDirectory = @"C:\";//--"C:\\";
@@ -414,77 +483,59 @@ namespace Cryptography
 
         //----------------------Vignere---------------------------
 
-        private string VigenereEncrypt(string plainText, string key)
+        private byte[] VigenereEncrypt(byte[] plainBytes, string key)
         {
-            string cipherText = "";
+            byte[] cipherBytes = new byte[plainBytes.Length];
             int j = 0;
 
-            for (int i = 0; i < plainText.Length; i++)
+            for (int i = 0; i < plainBytes.Length; i++)
             {
-                if (Char.IsLetter(plainText[i]))
-                {
-                    cipherText += (char)(((plainText[i] + key[j]) % 26) + 'A');
-                    j = ++j % key.Length;
-                }
-                else
-                {
-                    cipherText += plainText[i];
-                }
+                cipherBytes[i] = (byte)((plainBytes[i] + key[j % key.Length]) % 256);
+                j = (j + 1) % key.Length;
             }
 
-            return cipherText;
+            return cipherBytes;
         }
 
-        private string VigenereDecrypt(string cipherText, string key)
+        private byte[] VigenereDecrypt(byte[] cipherBytes, string key)
         {
-            string plainText = "";
+            byte[] plainBytes = new byte[cipherBytes.Length];
             int j = 0;
 
-            for (int i = 0; i < cipherText.Length; i++)
+            for (int i = 0; i < cipherBytes.Length; i++)
             {
-                if (Char.IsLetter(cipherText[i]))
-                {
-                    plainText += (char)(((cipherText[i] - key[j] + 26) % 26) + 'A');
-                    j = ++j % key.Length;
-                }
-                else
-                {
-                    plainText += cipherText[i];
-                }
+                plainBytes[i] = (byte)((cipherBytes[i] - key[j % key.Length] + 256) % 256);
+                j = (j + 1) % key.Length;
             }
 
-            return plainText;
+            return plainBytes;
         }
 
 
         //----------------------Vernam-----------------------------
 
-        private string VernamEncrypt(string plainText, string key)
+        private byte[] VernamEncrypt(byte[] plainBytes, byte[] keyBytes)
         {
-            string cipherText = "";
-            int j = 0;
+            byte[] cipherBytes = new byte[plainBytes.Length];
 
-            for (int i = 0; i < plainText.Length; i++)
+            for (int i = 0; i < plainBytes.Length; i++)
             {
-                cipherText += (char)(plainText[i] ^ key[j]);
-                j = ++j % key.Length;
+                cipherBytes[i] = (byte)(plainBytes[i] ^ keyBytes[i % keyBytes.Length]);
             }
 
-            return cipherText;
+            return cipherBytes;
         }
 
-        private string VernamDecrypt(string cipherText, string key)
+        private byte[] VernamDecrypt(byte[] cipherBytes, byte[] keyBytes)
         {
-            string plainText = "";
-            int j = 0;
+            byte[] plainBytes = new byte[cipherBytes.Length];
 
-            for (int i = 0; i < cipherText.Length; i++)
+            for (int i = 0; i < cipherBytes.Length; i++)
             {
-                plainText += (char)(cipherText[i] ^ key[j]);
-                j = ++j % key.Length;
+                plainBytes[i] = (byte)(cipherBytes[i] ^ keyBytes[i % keyBytes.Length]);
             }
 
-            return plainText;
+            return plainBytes;
         }
 
         //----------------------Transposition-----------------------------
@@ -553,6 +604,7 @@ namespace Cryptography
             return plainText;
         }
 
+
         private string EncryptWithMultipleAlgorithms(string plainText, List<string> algorithms, List<object> keys)
         {
             string cipherText = plainText;
@@ -610,7 +662,7 @@ namespace Cryptography
 
         private void transrbtn_CheckedChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void vernamrbtn_CheckedChanged(object sender, EventArgs e)
